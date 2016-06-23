@@ -8,15 +8,18 @@ import * as path from 'path'
  * See: https://github.com/deepsweet/istanbul-instrumenter-loader
  */
 // NOTE: Currently breaks with Webpack >=2
-export = function istanbul(exclude: Array<string> = null) {
+export = function istanbul(include?, exclude?: Array<string>) {
   return function istanbul(this: WebpackConfig): WebpackConfig {
     return {
       module: {
         postLoaders: get(this, 'module.postLoaders', []).concat([{
           test: /\.(js|ts)$/,
-          loader: 'istanbul-instrumenter',
-          include: this.metadata.src,
-          exclude: exclude || this.metadata.root ? [path.join(this.metadata.root, 'node_modules'), /\.(e2e|spec)\.(js|ts)x?$/] : [],
+          loader: 'sourcemap-istanbul-instrumenter',
+          query: {
+            'force-sourcemap': true
+          },
+          include: include || this.metadata.src,
+          exclude: exclude || this.metadata.root ? [path.join(this.metadata.root, 'node_modules')] : [],
         }])
       }
     }
