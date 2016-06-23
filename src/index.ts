@@ -8,7 +8,7 @@ import * as path from 'path'
  * See: https://github.com/deepsweet/istanbul-instrumenter-loader
  */
 // NOTE: Currently breaks with Webpack >=2
-export = function istanbul(include?, exclude?: Array<string>) {
+export = function istanbul({include = undefined, exclude = undefined}:{include?, exclude?}) {
   return function istanbul(this: WebpackConfig): WebpackConfig {
     return {
       module: {
