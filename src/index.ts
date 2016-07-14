@@ -19,7 +19,7 @@ export = function istanbul({include = undefined, exclude = undefined}:{include?,
             'force-sourcemap': true
           },
           include: include || this.metadata.src,
-          exclude: exclude || this.metadata.root ? [path.join(this.metadata.root, 'node_modules')] : [],
+          exclude: exclude || (this.metadata.root ? [path.join(this.metadata.root, 'node_modules')] : []),
         }])
       }
     }
