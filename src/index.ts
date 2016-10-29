@@ -12,7 +12,7 @@ export = function istanbul({include = undefined, exclude = undefined}:{include?,
   return function istanbul(this: WebpackConfigWithMetadata): WebpackConfigWithMetadata {
     return {
       module: {
-        loaders: get(this, 'module.loaders', []).concat([{
+        rules: get(this, 'module.rules', []).concat([{
           test: /\.(js|ts)$/,
           loader: 'sourcemap-istanbul-instrumenter',
           query: {
