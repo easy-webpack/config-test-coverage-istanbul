@@ -12,12 +12,13 @@ export = function istanbul({include = undefined, exclude = undefined}:{include?,
   return function istanbul(this: WebpackConfigWithMetadata): WebpackConfigWithMetadata {
     return {
       module: {
-        postLoaders: get(this, 'module.postLoaders', []).concat([{
+        loaders: get(this, 'module.loaders', []).concat([{
           test: /\.(js|ts)$/,
           loader: 'sourcemap-istanbul-instrumenter',
           query: {
             'force-sourcemap': true
           },
+          enforce: 'post',
           include: include || this.metadata.src,
           exclude: exclude || (this.metadata.root ? [path.join(this.metadata.root, 'node_modules')] : []),
         }])
