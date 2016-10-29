@@ -1,4 +1,4 @@
-import {WebpackConfig, get} from '@easy-webpack/core'
+import {WebpackConfigWithMetadata, get} from '@easy-webpack/core'
 import * as path from 'path'
 
 /**
@@ -9,7 +9,7 @@ import * as path from 'path'
  */
 // NOTE: Currently breaks with Webpack >=2
 export = function istanbul({include = undefined, exclude = undefined}:{include?, exclude?} = {}) {
-  return function istanbul(this: WebpackConfig): WebpackConfig {
+  return function istanbul(this: WebpackConfigWithMetadata): WebpackConfigWithMetadata {
     return {
       module: {
         postLoaders: get(this, 'module.postLoaders', []).concat([{
