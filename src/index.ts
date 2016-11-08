@@ -14,7 +14,7 @@ export = function istanbul({include = undefined, exclude = undefined}:{include?,
       module: {
         rules: get(this, 'module.rules', []).concat([{
           test: /\.(js|ts)$/,
-          loader: 'sourcemap-istanbul-instrumenter',
+          loader: 'sourcemap-istanbul-instrumenter-loader',
           query: {
             'force-sourcemap': true
           },
